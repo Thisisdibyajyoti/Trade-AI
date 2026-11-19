@@ -1,0 +1,10 @@
+node_modules
+desktop
+mobile
+training
+tests
+docs
+__pycache__
+*.pyc
+.git
+dist
