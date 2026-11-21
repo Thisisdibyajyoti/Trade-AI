@@ -141,6 +141,7 @@ export interface XAIReport {
 export interface AnalysisPayload {
   status: string;
   message?: string;
+  error_code?: string;
   symbol: string;
   current_price: number;
   timeframe: string;
@@ -155,4 +156,44 @@ export interface AnalysisPayload {
   data_summary: any;
   transparency_card: TransparencyCard;
   ai_explanation: string;
+  feed_status?: FeedStatus;
+  disclaimer?: string;
+}
+
+/** Real feed freshness label reported by the backend live layer. */
+export type FeedMode = 'LIVE' | 'DELAYED' | 'CLOSED' | 'STALE' | 'RECONNECTING' | 'CONNECTING';
+
+export interface FeedStatus {
+  symbol: string;
+  asset_class?: string;
+  mode: FeedMode;
+  source: string;
+  market_open: boolean;
+  last_tick: number | null;
+  last_price: number | null;
+  age_seconds: number | null;
+  latency_ms?: number | null;
+  rejected_ticks?: number;
+  message?: string;
+  server_time: number;
+}
+
+export interface LiveCandle extends Candle {
+  is_closed?: boolean;
+}
+
+/** A live coin row from the backend (CoinGecko-backed). */
+export interface CryptoMarketCoin {
+  id: string;
+  name: string;
+  symbol: string;
+  ticker: string;
+  trade_symbol: string;
+  price: number | null;
+  market_cap: number | null;
+  rank: number | null;
+  change_7d: number | null;
+  change_30d: number | null;
+  image?: string;
+  as_of: number;
 }

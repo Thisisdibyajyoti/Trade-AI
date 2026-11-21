@@ -2,10 +2,28 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
+from pathlib import Path
 import logging
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("market_data_fetcher")
+
+# yfinance keeps its timezone/cookie caches in an SQLite DB under the user home
+# directory, which is not always writable (headless or sandboxed hosts) and then
+# fails with "unable to open database file". Redirect those caches into the
+# project so history downloads always work.
+try:
+    _yf_cache_dir = Path(__file__).resolve().parents[1] / ".cache" / "yfinance"
+    _yf_cache_dir.mkdir(parents=True, exist_ok=True)
+    yf.set_tz_cache_location(str(_yf_cache_dir))
+    try:
+        from yfinance.cache import set_cache_location
+
+        set_cache_location(str(_yf_cache_dir))
+    except Exception:
+        pass
+except Exception as _exc:  # pragma: no cover - non-fatal
+    logger.warning("Could not redirect yfinance cache: %s", _exc)
 
 SYMBOL_MAP = {
     # Indian Equities & Indices

@@ -51,9 +51,16 @@
 10. **Transparent Desktop Overlay UI**
     - Floating translucent window view for desktop trading layout integration (`Tauri` ready).
 
-10b. **Target Scanner (Run / Stop)**
+10b. **Live Market Data Layer**
+    - One provider interface (`get_history`, `get_latest_price`, `subscribe`, `unsubscribe`, `status`) so sources can be swapped without touching models or UI.
+    - Crypto → Binance public WebSocket (fallback CoinGecko REST). US stocks → Finnhub WebSocket if `FINNHUB_API_KEY` is set, otherwise yfinance polling. Indian stocks/indices → yfinance polling.
+    - Backfill-then-stream, candle builder (1m/5m/15m/30m/1H/4H/1D), auto-reconnect with exponential backoff, staleness detection and market-hours awareness.
+    - Every price shows its **source**, **last-update time** and freshness badge: green `LIVE`, amber `DELAYED (~15 min)`, grey `MARKET CLOSED`, red `STALE / RECONNECTING`.
+    - Predictions only refresh **when a candle closes**; between closes only price, chart and paper-trade P&L move.
+
+10c. **Target Scanner (Run / Stop)**
     - Header **Run Target** / **Stop Target** control.
-    - Shows a movable translucent crosshair over a Google-style crypto search surface.
+    - Shows a movable translucent crosshair over a live crypto search surface built from the CoinGecko-backed `/api/crypto-list` feed (real DOM rows, no scraping).
     - Hover the target over a crypto name (Bitcoin, Ethereum, etc.) to load live **potential growth** from `/api/quick-growth`.
 
 11. **Paper Trading & Feedback Engine**
@@ -99,47 +106,50 @@ trade-lens/ (Tradingapp/)
 
 ---
 
-## 🚀 How to Run the Application
+## 🚀 Quickstart (under 10 steps)
 
-### 1. Run the Python FastAPI Backend
+1. **Install backend deps** (Python 3.10+), from the project root:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. **Install frontend deps**:
+   ```bash
+   cd frontend && npm install && cd ..
+   ```
+3. **Add keys (optional).** Copy `.env.example` → `.env` and fill in `OPENAI_API_KEY` and/or `FINNHUB_API_KEY`. Every key is optional — the app falls back to a free source and labels it honestly.
+4. **Point the frontend at the backend.** Ensure `frontend/.env` contains:
+   ```
+   VITE_API_BASE=http://localhost:8000/api
+   ```
+5. **Start the backend** (from the project root):
+   ```bash
+   python -m uvicorn backend.api.main:app --reload --port 8000
+   ```
+   API docs: `http://localhost:8000/docs`
+6. **Start the frontend** (second terminal):
+   ```bash
+   cd frontend && npm run dev
+   ```
+7. **Open** `http://localhost:5173` and type an asset (`RELIANCE`, `NIFTY 50`, `BTC/USDT`, `AAPL`).
+8. **Watch** the chart update live and the prediction refresh when a candle closes.
 
-Open a terminal in `d:\Projects\Tradingapp`:
+Or run both at once from the repo root: `npm run install:all` then `npm run dev`.
 
-```bash
-# Start FastAPI backend server on port 8000
-python -m uvicorn backend.api.main:app --reload --port 8000
-```
+### Deployment
 
-The backend API will be live at `http://localhost:8000`. You can inspect the API docs at `http://localhost:8000/docs`.
+The backend needs long-running WebSockets plus PyTorch/XGBoost (well over Vercel's ~250 MB serverless limit), so **do not deploy the backend to Vercel**.
 
-### 2. Run the React Frontend Dashboard
+- **Frontend → Vercel** (static Vite build).
+- **Backend → Render / Railway / Fly.io** (support long-running WebSockets).
+- Set `VITE_API_BASE` and `VITE_WS_URL` on the frontend to point at the deployed backend.
 
-Open a second terminal in `d:\Projects\Tradingapp\frontend`:
+---
 
-```bash
-# Start Vite development server
-npm run dev
-```
+## ⚠️ Disclaimer
 
-Open your browser to `http://localhost:5173` to view the **TradeAI** dashboard.
-
-### 3. Run everything with npm (from repo root)
-
-```bash
-npm run install:all
-npm run dev
-```
-
-### 4. Deploy on Vercel
-
-```bash
-npm run build
-vercel
-```
-
-`vercel.json` builds the Vite frontend and routes `/api/*` to the Python serverless function.
-
-**Target Scanner:** click **Run Target** → drag the translucent reticle onto a crypto name in the search results → growth popup appears. Click **Stop Target** (or **Stop Scanner**) to exit.
+> **For education and research only. Not financial advice. Predictions are probabilistic and can be wrong.**
+>
+> TradeAI never uses random, hardcoded or invented values. Every price, probability, interval and similarity score is computed from a real data feed and a trained model — and if the data is missing, stale or too short, the app says so instead of guessing.
 
 ---
 

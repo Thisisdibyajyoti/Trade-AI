@@ -8,7 +8,9 @@ import { PaperTradingModal } from './components/PaperTradingModal';
 import { ScreenVerifierModal } from './components/ScreenVerifierModal';
 import { ExplainableAIPanel } from './components/ExplainableAIPanel';
 import { TargetScanner } from './components/TargetScanner';
-import type { WatchlistItem, Candle, AnalysisPayload } from './types';
+import { FeedStatusBadge } from './components/FeedStatusBadge';
+import { useLiveFeed } from './hooks/useLiveFeed';
+import type { WatchlistItem, AnalysisPayload } from './types';
 import {
   Brain,
   Eye,
@@ -33,8 +35,7 @@ export const App: React.FC = () => {
   const [watchlist, setWatchlist] = useState<WatchlistItem[]>([]);
   const [activeSymbol, setActiveSymbol] = useState<string>('BTC/USDT');
   const [activeTimeframe, setActiveTimeframe] = useState<string>('1d');
-  const [candles, setCandles] = useState<Candle[]>([]);
-  const [analysis, setAnalysis] = useState<AnalysisPayload | null>(null);
+  const [restAnalysis, setRestAnalysis] = useState<AnalysisPayload | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const [showOverlay, setShowOverlay] = useState<boolean>(false);
@@ -45,6 +46,13 @@ export const App: React.FC = () => {
   const [openaiKey, setOpenaiKey] = useState<string>('');
   const [headerSearch, setHeaderSearch] = useState('');
 
+  // Live feed: real ticks, forming candle, feed status and candle-close predictions.
+  const live = useLiveFeed(activeSymbol, activeTimeframe);
+  const candles = live.candles;
+  const analysis = live.analysis || restAnalysis;
+  const feedStatus = live.status || analysis?.feed_status || null;
+  const livePrice = live.price ?? analysis?.current_price ?? null;
+
   useEffect(() => {
     fetch(`${API_BASE}/watchlist`)
       .then((res) => res.json())
@@ -52,15 +60,12 @@ export const App: React.FC = () => {
       .catch((err) => console.error('Failed to load watchlist:', err));
   }, []);
 
+  // On-demand full analysis (with CV model tuning). The live feed also produces
+  // predictions automatically on every candle close, so this is only used when
+  // the user explicitly refreshes.
   const runAnalysis = async (symbol: string, timeframe: string) => {
     setLoading(true);
     try {
-      const chartRes = await fetch(`${API_BASE}/chart-data/${encodeURIComponent(symbol)}?timeframe=${timeframe}`);
-      if (chartRes.ok) {
-        const chartData = await chartRes.json();
-        setCandles(chartData.candles || []);
-      }
-
       const analyzeRes = await fetch(`${API_BASE}/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -70,9 +75,8 @@ export const App: React.FC = () => {
           openai_api_key: openaiKey || undefined,
         }),
       });
-
       const analyzeData = await analyzeRes.json();
-      setAnalysis(analyzeData);
+      setRestAnalysis(analyzeData);
     } catch (err) {
       console.error('Analysis execution failed:', err);
     } finally {
@@ -80,8 +84,10 @@ export const App: React.FC = () => {
     }
   };
 
+  // Clear the stale REST snapshot whenever the instrument/timeframe changes so
+  // only the live feed's fresh prediction is shown.
   useEffect(() => {
-    runAnalysis(activeSymbol, activeTimeframe);
+    setRestAnalysis(null);
   }, [activeSymbol, activeTimeframe]);
 
   const handleSelectSymbol = (symbol: string) => {
@@ -89,14 +95,14 @@ export const App: React.FC = () => {
   };
 
   const handleLogPaperTrade = async () => {
-    if (!analysis || !analysis.current_price) return;
+    if (!analysis || livePrice == null) return;
     try {
       await fetch(`${API_BASE}/paper-trading/log`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           symbol: analysis.symbol,
-          current_price: analysis.current_price,
+          current_price: livePrice,
           probabilities: analysis.probabilities,
           prediction_interval: analysis.prediction_intervals,
         }),
@@ -236,7 +242,7 @@ export const App: React.FC = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              {['1m', '5m', '15m', '30m', '1h', '4h', '1d', '1w'].map((tf) => (
+              {['1m', '5m', '15m', '30m', '1h', '4h', '1d'].map((tf) => (
                 <button
                   key={tf}
                   type="button"
@@ -255,6 +261,27 @@ export const App: React.FC = () => {
             </div>
           </div>
 
+          {live.error && (
+            <div
+              className="card mb-4"
+              style={{ borderColor: 'rgba(239,68,68,0.4)', background: 'rgba(239,68,68,0.08)' }}
+            >
+              <div className="text-xs" style={{ color: '#F87171' }}>
+                {live.error}
+              </div>
+            </div>
+          )}
+          {analysis?.status && analysis.status !== 'SUCCESS' && (
+            <div
+              className="card mb-4"
+              style={{ borderColor: 'rgba(245,158,11,0.4)', background: 'rgba(245,158,11,0.08)' }}
+            >
+              <div className="text-xs" style={{ color: '#FBBF24' }}>
+                {analysis.message || 'Prediction unavailable for this asset/timeframe.'}
+              </div>
+            </div>
+          )}
+
           <div className="bento-grid">
             {/* Hero analytics card */}
             <div className="card card-hero col-span-12 lg:col-span-7">
@@ -270,16 +297,17 @@ export const App: React.FC = () => {
                 <div>
                   <div className="kpi-label">Spot Price</div>
                   <div className="kpi-value tabular-nums">
-                    {analysis?.current_price != null
-                      ? `$${analysis.current_price.toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+                    {livePrice != null
+                      ? `$${livePrice.toLocaleString(undefined, { maximumFractionDigits: 2 })}`
                       : loading
                         ? '…'
                         : '—'}
                   </div>
-                  <div className="mt-2">
+                  <div className="mt-2 flex items-center gap-2 flex-wrap">
                     <span className={`pct-badge ${(upPct >= downPct ? 'up' : 'down')} tabular-nums`}>
                       UP {upPct}%
                     </span>
+                    <FeedStatusBadge status={feedStatus} showSource compact />
                   </div>
                 </div>
                 <div>
@@ -291,7 +319,12 @@ export const App: React.FC = () => {
                 </div>
               </div>
 
-              <CandlestickChart candles={candles} symbol={activeSymbol} />
+              <CandlestickChart
+                candles={candles}
+                forming={live.forming}
+                symbol={activeSymbol}
+                feedStatus={feedStatus}
+              />
             </div>
 
             {/* Secondary metric stack */}
@@ -388,7 +421,7 @@ export const App: React.FC = () => {
       {showScreenVerifier && (
         <ScreenVerifierModal
           currentSymbol={activeSymbol}
-          currentApiPrice={analysis?.current_price || 0}
+          currentApiPrice={livePrice ?? 0}
           onClose={() => setShowScreenVerifier(false)}
         />
       )}

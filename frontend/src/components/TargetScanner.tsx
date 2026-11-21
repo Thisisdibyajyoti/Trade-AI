@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Crosshair, Search, X, TrendingUp, TrendingDown, Minus, Loader2 } from 'lucide-react';
+import type { CryptoMarketCoin } from '../types';
 
 const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 const TOOLBAR_H = 64;
@@ -32,34 +33,21 @@ export interface QuickGrowth {
   };
 }
 
-const CRYPTO_CATALOG: CryptoHit[] = [
-  { name: 'Bitcoin', symbol: 'BTC/USDT', ticker: 'BTC', blurb: 'The largest cryptocurrency by market capitalization.' },
-  { name: 'Ethereum', symbol: 'ETH/USDT', ticker: 'ETH', blurb: 'Smart-contract platform powering DeFi and NFTs.' },
-  { name: 'Solana', symbol: 'SOL', ticker: 'SOL', blurb: 'High-throughput layer-1 blockchain.' },
-  { name: 'Cardano', symbol: 'ADA', ticker: 'ADA', blurb: 'Proof-of-stake blockchain focused on research.' },
-  { name: 'Dogecoin', symbol: 'DOGE', ticker: 'DOGE', blurb: 'Community-driven meme cryptocurrency.' },
-  { name: 'Ripple', symbol: 'XRP', ticker: 'XRP', blurb: 'Digital asset for cross-border payments.' },
-  { name: 'BNB', symbol: 'BNB', ticker: 'BNB', blurb: 'Native token of the BNB Chain ecosystem.' },
-  { name: 'Avalanche', symbol: 'AVAX', ticker: 'AVAX', blurb: 'Fast smart-contract platform with subnets.' },
-  { name: 'Polkadot', symbol: 'DOT', ticker: 'DOT', blurb: 'Multi-chain network for interoperable parachains.' },
-  { name: 'Chainlink', symbol: 'LINK', ticker: 'LINK', blurb: 'Decentralized oracle network for smart contracts.' },
-  { name: 'Litecoin', symbol: 'LTC', ticker: 'LTC', blurb: 'Peer-to-peer cryptocurrency and early Bitcoin fork.' },
-  { name: 'Polygon', symbol: 'MATIC', ticker: 'MATIC', blurb: 'Ethereum scaling and infrastructure network.' },
-];
-
 interface TargetScannerProps {
   active: boolean;
   onStop: () => void;
 }
 
 export const TargetScanner: React.FC<TargetScannerProps> = ({ active, onStop }) => {
-  const [query, setQuery] = useState('bitcoin');
-  const [submitted, setSubmitted] = useState('bitcoin');
+  const [query, setQuery] = useState('');
   const [pos, setPos] = useState({ x: 420, y: 320 });
   const [dragging, setDragging] = useState(false);
   const [locked, setLocked] = useState<CryptoHit | null>(null);
   const [growth, setGrowth] = useState<QuickGrowth | null>(null);
   const [loadingGrowth, setLoadingGrowth] = useState(false);
+  const [coins, setCoins] = useState<CryptoMarketCoin[]>([]);
+  const [loadingCoins, setLoadingCoins] = useState(false);
+  const [coinsError, setCoinsError] = useState<string | null>(null);
   const dragOffset = useRef({ x: 0, y: 0 });
   const reticleRef = useRef<HTMLDivElement>(null);
   const cacheRef = useRef<Record<string, QuickGrowth>>({});
@@ -67,16 +55,52 @@ export const TargetScanner: React.FC<TargetScannerProps> = ({ active, onStop }) 
   const onStopRef = useRef(onStop);
   onStopRef.current = onStop;
 
-  const results = CRYPTO_CATALOG.filter((c) => {
-    const q = submitted.trim().toLowerCase();
-    if (!q) return true;
-    return (
-      c.name.toLowerCase().includes(q) ||
-      c.ticker.toLowerCase().includes(q) ||
-      c.symbol.toLowerCase().includes(q) ||
-      c.blurb.toLowerCase().includes(q)
+  // Load the real, live crypto list (CoinGecko-backed) so the search surface is
+  // built from actual market data instead of a hard-coded catalog.
+  useEffect(() => {
+    if (!active) return;
+    let cancelled = false;
+    setLoadingCoins(true);
+    setCoinsError(null);
+    fetch(`${API_BASE}/crypto-list?limit=100`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (cancelled) return;
+        if (data.status === 'SUCCESS' && Array.isArray(data.coins)) {
+          setCoins(data.coins);
+        } else {
+          setCoins([]);
+          setCoinsError('Live crypto list is unavailable right now. Please retry shortly.');
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setCoinsError('Failed to load the live crypto list.');
+      })
+      .finally(() => {
+        if (!cancelled) setLoadingCoins(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [active]);
+
+  const results = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return coins;
+    return coins.filter(
+      (c) =>
+        (c.name || '').toLowerCase().includes(q) ||
+        (c.ticker || '').toLowerCase().includes(q) ||
+        (c.trade_symbol || '').toLowerCase().includes(q),
     );
-  });
+  }, [coins, query]);
+
+  const blurbFor = (c: CryptoMarketCoin) => {
+    const bits = [`Ranked #${c.rank ?? '—'} by market cap.`];
+    if (typeof c.change_7d === 'number') bits.push(`7d ${c.change_7d.toFixed(2)}%.`);
+    if (typeof c.change_30d === 'number') bits.push(`30d ${c.change_30d.toFixed(2)}%.`);
+    return bits.join(' ');
+  };
 
   const clampPos = useCallback((x: number, y: number) => ({
     x: Math.max(8, Math.min(window.innerWidth - 88, x)),
@@ -92,7 +116,7 @@ export const TargetScanner: React.FC<TargetScannerProps> = ({ active, onStop }) 
     setLoadingGrowth(true);
     setGrowth(null);
     try {
-      const res = await fetch(`${API_BASE}/quick-growth/${encodeURIComponent(hit.symbol)}`);
+      const res = await fetch(`${API_BASE}/quick-growth?symbol=${encodeURIComponent(hit.symbol)}`);
       const data: QuickGrowth = await res.json();
       if (data.status === 'SUCCESS') cacheRef.current[key] = data;
       setGrowth(data);
@@ -280,7 +304,6 @@ export const TargetScanner: React.FC<TargetScannerProps> = ({ active, onStop }) 
               }}
               onSubmit={(e) => {
                 e.preventDefault();
-                setSubmitted(query);
               }}
             >
               <Search size={16} color="#8E8E98" />
@@ -298,85 +321,93 @@ export const TargetScanner: React.FC<TargetScannerProps> = ({ active, onStop }) 
                   fontFamily: 'inherit',
                 }}
               />
-              <button
-                type="submit"
-                style={{
-                  background: 'linear-gradient(90deg,#D946EF,#EC4899)',
-                  color: '#09090B',
-                  border: 'none',
-                  borderRadius: 10,
-                  padding: '6px 12px',
-                  fontWeight: 700,
-                  fontSize: 12,
-                  cursor: 'pointer',
-                }}
-              >
-                Search
-              </button>
+              {loadingCoins && <Loader2 size={14} className="animate-spin" color="#8E8E98" />}
             </form>
             <p style={{ fontSize: 11, color: '#8E8E98', marginTop: 12 }}>
               Drag the magenta target onto a crypto name to see potential growth
             </p>
           </div>
 
+          {coinsError && (
+            <div style={{ fontSize: 12, color: '#F9A8D4', textAlign: 'center', marginBottom: 16 }}>
+              {coinsError}
+            </div>
+          )}
+
           <div style={{ fontSize: 12, color: '#8E8E98', marginBottom: 16 }}>
-            About {results.length} results for <span style={{ color: '#fff' }}>"{submitted}"</span>
+            Showing {results.length} live coins{query.trim() ? ` for "${query.trim()}"` : ''} · source: CoinGecko
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-            {results.map((c) => (
-              <article
-                key={c.symbol}
-                data-crypto-symbol={c.symbol}
-                data-crypto-name={c.name}
-                data-crypto-ticker={c.ticker}
-                data-crypto-blurb={c.blurb}
-                style={{
-                  padding: 16,
-                  borderRadius: 16,
-                  background: '#121216',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                }}
-              >
-                <div style={{ fontSize: 11, color: '#8E8E98', marginBottom: 4 }}>
-                  crypto · {c.ticker}
-                </div>
-                <h3
-                  data-crypto-symbol={c.symbol}
+            {results.map((c) => {
+              const blurb = blurbFor(c);
+              return (
+                <article
+                  key={c.id || c.trade_symbol}
+                  data-crypto-symbol={c.trade_symbol}
                   data-crypto-name={c.name}
                   data-crypto-ticker={c.ticker}
-                  style={{ margin: 0, fontSize: 20, color: '#E879F9', fontWeight: 700 }}
+                  data-crypto-blurb={blurb}
+                  style={{
+                    padding: 16,
+                    borderRadius: 16,
+                    background: '#121216',
+                    border: '1px solid rgba(255,255,255,0.07)',
+                  }}
                 >
-                  {c.name} ({c.ticker}) — Cryptocurrency
-                </h3>
-                <p
-                  data-crypto-symbol={c.symbol}
-                  data-crypto-name={c.name}
-                  data-crypto-ticker={c.ticker}
-                  style={{ margin: '8px 0 0', fontSize: 14, color: '#B4B4BE', lineHeight: 1.6 }}
-                >
-                  <span
-                    data-crypto-symbol={c.symbol}
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      fontSize: 11,
+                      color: '#8E8E98',
+                      marginBottom: 4,
+                    }}
+                  >
+                    <span>crypto · {c.ticker}</span>
+                    {typeof c.price === 'number' && (
+                      <span style={{ color: '#F0ABFC', fontFamily: 'ui-monospace, monospace' }}>
+                        ${c.price.toLocaleString(undefined, { maximumFractionDigits: 6 })}
+                      </span>
+                    )}
+                  </div>
+                  <h3
+                    data-crypto-symbol={c.trade_symbol}
                     data-crypto-name={c.name}
                     data-crypto-ticker={c.ticker}
-                    style={{ color: '#F0ABFC', fontWeight: 700 }}
+                    style={{ margin: 0, fontSize: 20, color: '#E879F9', fontWeight: 700 }}
                   >
-                    {c.name}
-                  </span>{' '}
-                  {c.blurb} Ticker{' '}
-                  <span
-                    data-crypto-symbol={c.symbol}
+                    {c.name} ({c.ticker}) — Cryptocurrency
+                  </h3>
+                  <p
+                    data-crypto-symbol={c.trade_symbol}
                     data-crypto-name={c.name}
                     data-crypto-ticker={c.ticker}
-                    style={{ color: '#EC4899', fontFamily: 'ui-monospace, monospace' }}
+                    style={{ margin: '8px 0 0', fontSize: 14, color: '#B4B4BE', lineHeight: 1.6 }}
                   >
-                    {c.symbol}
-                  </span>
-                  .
-                </p>
-              </article>
-            ))}
-            {results.length === 0 && (
+                    <span
+                      data-crypto-symbol={c.trade_symbol}
+                      data-crypto-name={c.name}
+                      data-crypto-ticker={c.ticker}
+                      style={{ color: '#F0ABFC', fontWeight: 700 }}
+                    >
+                      {c.name}
+                    </span>{' '}
+                    {blurb} Ticker{' '}
+                    <span
+                      data-crypto-symbol={c.trade_symbol}
+                      data-crypto-name={c.name}
+                      data-crypto-ticker={c.ticker}
+                      style={{ color: '#EC4899', fontFamily: 'ui-monospace, monospace' }}
+                    >
+                      {c.trade_symbol}
+                    </span>
+                    .
+                  </p>
+                </article>
+              );
+            })}
+            {!loadingCoins && results.length === 0 && !coinsError && (
               <p style={{ color: '#8E8E98', fontSize: 14 }}>No matches. Try bitcoin, ethereum, or solana.</p>
             )}
           </div>
