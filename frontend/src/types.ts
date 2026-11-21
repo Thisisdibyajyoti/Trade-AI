@@ -161,7 +161,7 @@ export interface AnalysisPayload {
 }
 
 /** Real feed freshness label reported by the backend live layer. */
-export type FeedMode = 'LIVE' | 'DELAYED' | 'CLOSED' | 'STALE' | 'RECONNECTING' | 'CONNECTING';
+export type FeedMode = 'LIVE' | 'DELAYED' | 'CLOSED' | 'STALE' | 'OFFLINE' | 'RECONNECTING' | 'CONNECTING';
 
 export interface FeedStatus {
   symbol: string;

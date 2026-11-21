@@ -6,6 +6,7 @@ const MODE_STYLE: Record<FeedMode, { bg: string; fg: string; dot: string; label:
   DELAYED: { bg: 'rgba(245,158,11,0.16)', fg: '#FBBF24', dot: '#F59E0B', label: 'DELAYED ~15m' },
   CLOSED: { bg: 'rgba(148,163,184,0.16)', fg: '#94A3B8', dot: '#64748B', label: 'MARKET CLOSED' },
   STALE: { bg: 'rgba(239,68,68,0.16)', fg: '#F87171', dot: '#EF4444', label: 'STALE' },
+  OFFLINE: { bg: 'rgba(56,189,248,0.16)', fg: '#38BDF8', dot: '#0EA5E9', label: 'OFFLINE DATASET' },
   RECONNECTING: { bg: 'rgba(239,68,68,0.16)', fg: '#F87171', dot: '#EF4444', label: 'RECONNECTING' },
   CONNECTING: { bg: 'rgba(148,163,184,0.16)', fg: '#94A3B8', dot: '#64748B', label: 'CONNECTING' },
 };

@@ -22,7 +22,7 @@ import json
 import logging
 
 from market_data.symbols import resolve_asset, is_market_open
-from market_data.live_feed import manager, fetch_history, provider_chain
+from market_data.live_feed import manager, fetch_history, provider_chain, is_offline_source
 from market_data.providers.coingecko import fetch_crypto_market_list
 from market_data.candle_builder import TIMEFRAME_SECONDS
 from services.analysis_service import run_full_analysis
@@ -104,8 +104,21 @@ def candles_from_df(df: pd.DataFrame) -> list[dict]:
     return candles
 
 
-def static_feed_status(asset) -> dict:
+def static_feed_status(asset, offline: bool = False) -> dict:
     """Feed status when no live feed object exists yet (REST snapshot)."""
+    if offline:
+        return {
+            "symbol": asset.display,
+            "asset_class": asset.asset_class,
+            "mode": "OFFLINE",
+            "source": "offline dataset",
+            "market_open": is_market_open(asset),
+            "last_tick": None,
+            "last_price": None,
+            "age_seconds": None,
+            "message": "No live feed available — showing the stored offline dataset (static snapshot, not live).",
+            "server_time": datetime.utcnow().timestamp(),
+        }
     live_providers = provider_chain(asset)
     primary = live_providers[0].name if live_providers else "none"
     freshness = live_providers[0].freshness if live_providers else "DELAYED"
@@ -190,7 +203,7 @@ async def get_chart_data(symbol: str, timeframe: str = "1d"):
         "data_source": result.source,
         "candle_count": int(len(df)),
         "last_price": last_price,
-        "feed_status": static_feed_status(asset),
+        "feed_status": static_feed_status(asset, offline=is_offline_source(result.source)),
         "candles": candles_from_df(df),
     }
 
@@ -250,7 +263,7 @@ async def analyze_asset(req: AnalyzeRequest):
         "last_update": max_ts.isoformat(),
     }
     analysis = await asyncio.to_thread(run_full_analysis, df, meta, req.openai_api_key)
-    analysis["feed_status"] = static_feed_status(asset)
+    analysis["feed_status"] = static_feed_status(asset, offline=is_offline_source(result.source))
     analysis["disclaimer"] = DISCLAIMER
     return analysis
 

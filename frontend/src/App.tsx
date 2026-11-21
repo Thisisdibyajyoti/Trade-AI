@@ -323,6 +323,7 @@ export const App: React.FC = () => {
                 candles={candles}
                 forming={live.forming}
                 symbol={activeSymbol}
+                timeframe={activeTimeframe}
                 feedStatus={feedStatus}
               />
             </div>

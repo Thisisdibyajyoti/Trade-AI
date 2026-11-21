@@ -1,0 +1,2033 @@
+{
+  "0G": {
+    "end": "2026-11-20",
+    "file": "0G.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\0G.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "1INCH": {
+    "end": "2026-11-20",
+    "file": "1INCH.csv",
+    "has_volume": false,
+    "rows": 2143,
+    "sources": [
+      "a1\\1INCH.csv"
+    ],
+    "start": "2021-01-08"
+  },
+  "A": {
+    "end": "2026-11-20",
+    "file": "A.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\A.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "AAVE": {
+    "end": "2026-11-20",
+    "file": "AAVE.csv",
+    "has_volume": true,
+    "rows": 2238,
+    "sources": [
+      "a0\\coin_Aave.csv",
+      "a1\\AAVE.csv"
+    ],
+    "start": "2020-10-05"
+  },
+  "ADA": {
+    "end": "2026-11-20",
+    "file": "ADA.csv",
+    "has_volume": true,
+    "rows": 3337,
+    "sources": [
+      "a0\\coin_Cardano.csv",
+      "a1\\ADA.csv"
+    ],
+    "start": "2017-10-02"
+  },
+  "AERO": {
+    "end": "2026-11-20",
+    "file": "AERO.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\AERO.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "AIOT": {
+    "end": "2026-11-20",
+    "file": "AIOT.csv",
+    "has_volume": false,
+    "rows": 13,
+    "sources": [
+      "a1\\AIOT.csv"
+    ],
+    "start": "2026-11-08"
+  },
+  "AIOZ": {
+    "end": "2026-11-20",
+    "file": "AIOZ.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\AIOZ.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "AKT": {
+    "end": "2026-11-20",
+    "file": "AKT.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\AKT.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ALGO": {
+    "end": "2026-11-20",
+    "file": "ALGO.csv",
+    "has_volume": false,
+    "rows": 2700,
+    "sources": [
+      "a1\\ALGO.csv"
+    ],
+    "start": "2019-07-01"
+  },
+  "APE": {
+    "end": "2026-11-20",
+    "file": "APE.csv",
+    "has_volume": false,
+    "rows": 1710,
+    "sources": [
+      "a1\\APE.csv"
+    ],
+    "start": "2022-03-17"
+  },
+  "APT": {
+    "end": "2026-11-20",
+    "file": "APT.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\APT.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "AR": {
+    "end": "2026-11-20",
+    "file": "AR.csv",
+    "has_volume": false,
+    "rows": 2349,
+    "sources": [
+      "a1\\AR.csv"
+    ],
+    "start": "2020-06-16"
+  },
+  "ARB": {
+    "end": "2026-11-20",
+    "file": "ARB.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ARB.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ASTER": {
+    "end": "2026-11-20",
+    "file": "ASTER.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ASTER.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ATH": {
+    "end": "2026-11-20",
+    "file": "ATH.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ATH.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ATOM": {
+    "end": "2026-11-20",
+    "file": "ATOM.csv",
+    "has_volume": true,
+    "rows": 2808,
+    "sources": [
+      "a0\\coin_Cosmos.csv",
+      "a1\\ATOM.csv"
+    ],
+    "start": "2019-03-15"
+  },
+  "AVAX": {
+    "end": "2026-11-20",
+    "file": "AVAX.csv",
+    "has_volume": false,
+    "rows": 2250,
+    "sources": [
+      "a1\\AVAX.csv"
+    ],
+    "start": "2020-09-22"
+  },
+  "AWE": {
+    "end": "2026-11-20",
+    "file": "AWE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\AWE.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "AXS": {
+    "end": "2026-11-20",
+    "file": "AXS.csv",
+    "has_volume": false,
+    "rows": 2208,
+    "sources": [
+      "a1\\AXS.csv"
+    ],
+    "start": "2020-11-04"
+  },
+  "B": {
+    "end": "2026-11-20",
+    "file": "B.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\B.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "BAT": {
+    "end": "2026-11-20",
+    "file": "BAT.csv",
+    "has_volume": false,
+    "rows": 3458,
+    "sources": [
+      "a1\\BAT.csv"
+    ],
+    "start": "2017-06-01"
+  },
+  "BCH": {
+    "end": "2026-11-20",
+    "file": "BCH.csv",
+    "has_volume": false,
+    "rows": 3399,
+    "sources": [
+      "a1\\BCH.csv"
+    ],
+    "start": "2017-08-01"
+  },
+  "BEAM": {
+    "end": "2026-11-20",
+    "file": "BEAM.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\BEAM.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "BGB": {
+    "end": "2026-11-20",
+    "file": "BGB.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\BGB.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "BNB": {
+    "end": "2026-11-20",
+    "file": "BNB.csv",
+    "has_volume": true,
+    "rows": 3405,
+    "sources": [
+      "a0\\coin_BinanceCoin.csv",
+      "a1\\BNB.csv"
+    ],
+    "start": "2017-07-26"
+  },
+  "BONK": {
+    "end": "2026-11-20",
+    "file": "BONK.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\BONK.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "BSV": {
+    "end": "2026-11-20",
+    "file": "BSV.csv",
+    "has_volume": false,
+    "rows": 2924,
+    "sources": [
+      "a1\\BSV.csv"
+    ],
+    "start": "2018-11-19"
+  },
+  "BTC": {
+    "end": "2026-11-20",
+    "file": "BTC.csv",
+    "has_volume": true,
+    "rows": 5971,
+    "sources": [
+      "a0\\coin_Bitcoin.csv",
+      "a1\\BTC.csv"
+    ],
+    "start": "2010-07-17"
+  },
+  "BTT": {
+    "end": "2026-11-20",
+    "file": "BTT.csv",
+    "has_volume": false,
+    "rows": 1768,
+    "sources": [
+      "a1\\BTT.csv"
+    ],
+    "start": "2022-01-18"
+  },
+  "CAKE": {
+    "end": "2026-11-20",
+    "file": "CAKE.csv",
+    "has_volume": false,
+    "rows": 2243,
+    "sources": [
+      "a1\\CAKE.csv"
+    ],
+    "start": "2020-09-30"
+  },
+  "CAP": {
+    "end": "2026-11-20",
+    "file": "CAP.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\CAP.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "CC": {
+    "end": "2026-11-20",
+    "file": "CC.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\CC.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "CFX": {
+    "end": "2026-11-20",
+    "file": "CFX.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\CFX.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "CHZ": {
+    "end": "2026-11-20",
+    "file": "CHZ.csv",
+    "has_volume": false,
+    "rows": 2632,
+    "sources": [
+      "a1\\CHZ.csv"
+    ],
+    "start": "2019-09-04"
+  },
+  "COMP": {
+    "end": "2026-11-20",
+    "file": "COMP.csv",
+    "has_volume": false,
+    "rows": 2346,
+    "sources": [
+      "a1\\COMP.csv"
+    ],
+    "start": "2020-06-19"
+  },
+  "CRO": {
+    "end": "2026-11-20",
+    "file": "CRO.csv",
+    "has_volume": true,
+    "rows": 2898,
+    "sources": [
+      "a0\\coin_CryptocomCoin.csv",
+      "a1\\CRO.csv"
+    ],
+    "start": "2018-12-15"
+  },
+  "CRV": {
+    "end": "2026-11-20",
+    "file": "CRV.csv",
+    "has_volume": false,
+    "rows": 2290,
+    "sources": [
+      "a1\\CRV.csv"
+    ],
+    "start": "2020-08-14"
+  },
+  "CVX": {
+    "end": "2026-11-20",
+    "file": "CVX.csv",
+    "has_volume": false,
+    "rows": 1759,
+    "sources": [
+      "a1\\CVX.csv"
+    ],
+    "start": "2022-01-27"
+  },
+  "DAI": {
+    "end": "2026-11-20",
+    "file": "DAI.csv",
+    "has_volume": false,
+    "rows": 2443,
+    "sources": [
+      "a1\\DAI.csv"
+    ],
+    "start": "2017-12-27"
+  },
+  "DASH": {
+    "end": "2026-11-20",
+    "file": "DASH.csv",
+    "has_volume": false,
+    "rows": 4600,
+    "sources": [
+      "a1\\DASH.csv"
+    ],
+    "start": "2014-04-18"
+  },
+  "DCR": {
+    "end": "2026-11-20",
+    "file": "DCR.csv",
+    "has_volume": false,
+    "rows": 4095,
+    "sources": [
+      "a1\\DCR.csv"
+    ],
+    "start": "2015-09-05"
+  },
+  "DEEP": {
+    "end": "2026-11-20",
+    "file": "DEEP.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\DEEP.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "DEXE": {
+    "end": "2026-11-20",
+    "file": "DEXE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\DEXE.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "DOG": {
+    "end": "2026-11-20",
+    "file": "DOG.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\DOG.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "DOGE": {
+    "end": "2026-11-20",
+    "file": "DOGE.csv",
+    "has_volume": true,
+    "rows": 4723,
+    "sources": [
+      "a0\\coin_Dogecoin.csv",
+      "a1\\DOGE.csv"
+    ],
+    "start": "2013-12-16"
+  },
+  "DOT": {
+    "end": "2026-11-20",
+    "file": "DOT.csv",
+    "has_volume": true,
+    "rows": 2280,
+    "sources": [
+      "a0\\coin_Polkadot.csv",
+      "a1\\DOT.csv"
+    ],
+    "start": "2020-08-21"
+  },
+  "DYDX": {
+    "end": "2026-11-20",
+    "file": "DYDX.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\DYDX.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "EDGE": {
+    "end": "2026-11-20",
+    "file": "EDGE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\EDGE.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "EGLD": {
+    "end": "2026-11-20",
+    "file": "EGLD.csv",
+    "has_volume": false,
+    "rows": 2270,
+    "sources": [
+      "a1\\EGLD.csv"
+    ],
+    "start": "2020-09-03"
+  },
+  "EIGEN": {
+    "end": "2026-11-20",
+    "file": "EIGEN.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\EIGEN.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ENA": {
+    "end": "2026-11-20",
+    "file": "ENA.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ENA.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ENS": {
+    "end": "2026-11-20",
+    "file": "ENS.csv",
+    "has_volume": false,
+    "rows": 1649,
+    "sources": [
+      "a1\\ENS.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "EOS": {
+    "end": "2021-07-06",
+    "file": "EOS.csv",
+    "has_volume": true,
+    "rows": 1466,
+    "sources": [
+      "a0\\coin_EOS.csv"
+    ],
+    "start": "2017-07-02"
+  },
+  "ETC": {
+    "end": "2026-11-20",
+    "file": "ETC.csv",
+    "has_volume": false,
+    "rows": 3769,
+    "sources": [
+      "a1\\ETC.csv"
+    ],
+    "start": "2016-07-27"
+  },
+  "ETH": {
+    "end": "2026-11-20",
+    "file": "ETH.csv",
+    "has_volume": true,
+    "rows": 4124,
+    "sources": [
+      "a0\\coin_Ethereum.csv",
+      "a1\\ETH.csv"
+    ],
+    "start": "2015-08-07"
+  },
+  "ETHFI": {
+    "end": "2026-11-20",
+    "file": "ETHFI.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ETHFI.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "EURC": {
+    "end": "2026-11-20",
+    "file": "EURC.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\EURC.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "FARTCOIN": {
+    "end": "2026-11-20",
+    "file": "FARTCOIN.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\FARTCOIN.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "FD": {
+    "end": "2026-11-20",
+    "file": "FD.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\FDUSD.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "FET": {
+    "end": "2026-11-20",
+    "file": "FET.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\FET.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "FF": {
+    "end": "2026-11-20",
+    "file": "FF.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\FF.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "FIL": {
+    "end": "2026-11-20",
+    "file": "FIL.csv",
+    "has_volume": false,
+    "rows": 3194,
+    "sources": [
+      "a1\\FIL.csv"
+    ],
+    "start": "2018-02-12"
+  },
+  "FLOKI": {
+    "end": "2026-11-20",
+    "file": "FLOKI.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\FLOKI.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "FLR": {
+    "end": "2026-11-20",
+    "file": "FLR.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\FLR.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "FLUID": {
+    "end": "2026-11-20",
+    "file": "FLUID.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\FLUID.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "FORM": {
+    "end": "2026-11-20",
+    "file": "FORM.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\FORM.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "FTT": {
+    "end": "2026-11-20",
+    "file": "FTT.csv",
+    "has_volume": false,
+    "rows": 2660,
+    "sources": [
+      "a1\\FTT.csv"
+    ],
+    "start": "2019-08-07"
+  },
+  "GALA": {
+    "end": "2026-11-20",
+    "file": "GALA.csv",
+    "has_volume": false,
+    "rows": 1878,
+    "sources": [
+      "a1\\GALA.csv"
+    ],
+    "start": "2021-09-30"
+  },
+  "GENIUS": {
+    "end": "2026-11-20",
+    "file": "GENIUS.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\GENIUS.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "GEOD": {
+    "end": "2026-11-20",
+    "file": "GEOD.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\GEOD.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "GLM": {
+    "end": "2026-11-20",
+    "file": "GLM.csv",
+    "has_volume": false,
+    "rows": 1653,
+    "sources": [
+      "a1\\GLM.csv"
+    ],
+    "start": "2022-05-13"
+  },
+  "GMX": {
+    "end": "2026-11-20",
+    "file": "GMX.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\GMX.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "GNO": {
+    "end": "2026-11-20",
+    "file": "GNO.csv",
+    "has_volume": false,
+    "rows": 1787,
+    "sources": [
+      "a1\\GNO.csv"
+    ],
+    "start": "2021-12-30"
+  },
+  "GOMINING": {
+    "end": "2026-11-20",
+    "file": "GOMINING.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\GOMINING.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "GRAM": {
+    "end": "2026-11-20",
+    "file": "GRAM.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\GRAM.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "GRASS": {
+    "end": "2026-11-20",
+    "file": "GRASS.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\GRASS.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "GRT": {
+    "end": "2026-11-20",
+    "file": "GRT.csv",
+    "has_volume": false,
+    "rows": 2164,
+    "sources": [
+      "a1\\GRT.csv"
+    ],
+    "start": "2020-12-18"
+  },
+  "GT": {
+    "end": "2026-11-20",
+    "file": "GT.csv",
+    "has_volume": false,
+    "rows": 1653,
+    "sources": [
+      "a1\\GT.csv"
+    ],
+    "start": "2022-05-11"
+  },
+  "HBAR": {
+    "end": "2026-11-20",
+    "file": "HBAR.csv",
+    "has_volume": false,
+    "rows": 2619,
+    "sources": [
+      "a1\\HBAR.csv"
+    ],
+    "start": "2019-09-20"
+  },
+  "HYPE": {
+    "end": "2026-11-20",
+    "file": "HYPE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\HYPE.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ICP": {
+    "end": "2026-11-20",
+    "file": "ICP.csv",
+    "has_volume": false,
+    "rows": 2021,
+    "sources": [
+      "a1\\ICP.csv"
+    ],
+    "start": "2021-05-10"
+  },
+  "IMX": {
+    "end": "2026-11-20",
+    "file": "IMX.csv",
+    "has_volume": false,
+    "rows": 1823,
+    "sources": [
+      "a1\\IMX.csv"
+    ],
+    "start": "2021-11-24"
+  },
+  "INJ": {
+    "end": "2026-11-20",
+    "file": "INJ.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\INJ.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "IOTA": {
+    "end": "2026-11-20",
+    "file": "IOTA.csv",
+    "has_volume": true,
+    "rows": 3448,
+    "sources": [
+      "a0\\coin_Iota.csv",
+      "a1\\IOTA.csv"
+    ],
+    "start": "2017-06-13"
+  },
+  "JASMY": {
+    "end": "2026-11-20",
+    "file": "JASMY.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\JASMY.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "JST": {
+    "end": "2026-11-20",
+    "file": "JST.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\JST.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "JTO": {
+    "end": "2026-11-20",
+    "file": "JTO.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\JTO.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "JUP": {
+    "end": "2026-11-20",
+    "file": "JUP.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\JUP.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "KAIA": {
+    "end": "2026-11-20",
+    "file": "KAIA.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\KAIA.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "KAS": {
+    "end": "2026-11-20",
+    "file": "KAS.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\KAS.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "KAVA": {
+    "end": "2026-11-20",
+    "file": "KAVA.csv",
+    "has_volume": false,
+    "rows": 1769,
+    "sources": [
+      "a1\\KAVA.csv"
+    ],
+    "start": "2022-01-17"
+  },
+  "KCS": {
+    "end": "2026-11-20",
+    "file": "KCS.csv",
+    "has_volume": false,
+    "rows": 3265,
+    "sources": [
+      "a1\\KCS.csv"
+    ],
+    "start": "2017-12-13"
+  },
+  "KITE": {
+    "end": "2026-11-20",
+    "file": "KITE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\KITE.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "KMNO": {
+    "end": "2026-11-20",
+    "file": "KMNO.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\KMNO.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "LDO": {
+    "end": "2026-11-20",
+    "file": "LDO.csv",
+    "has_volume": false,
+    "rows": 1657,
+    "sources": [
+      "a1\\LDO.csv"
+    ],
+    "start": "2022-05-09"
+  },
+  "LEO": {
+    "end": "2026-11-20",
+    "file": "LEO.csv",
+    "has_volume": false,
+    "rows": 2712,
+    "sources": [
+      "a1\\LEO.csv"
+    ],
+    "start": "2019-06-19"
+  },
+  "LINK": {
+    "end": "2026-11-20",
+    "file": "LINK.csv",
+    "has_volume": true,
+    "rows": 3346,
+    "sources": [
+      "a0\\coin_ChainLink.csv",
+      "a1\\LINK.csv"
+    ],
+    "start": "2017-09-21"
+  },
+  "LIT": {
+    "end": "2026-11-20",
+    "file": "LIT.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\LIT.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "LTC": {
+    "end": "2026-11-20",
+    "file": "LTC.csv",
+    "has_volume": true,
+    "rows": 4952,
+    "sources": [
+      "a0\\coin_Litecoin.csv",
+      "a1\\LTC.csv"
+    ],
+    "start": "2013-04-29"
+  },
+  "LUNC": {
+    "end": "2026-11-20",
+    "file": "LUNC.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\LUNC.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "M": {
+    "end": "2026-11-20",
+    "file": "M.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\M.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "MANA": {
+    "end": "2026-11-20",
+    "file": "MANA.csv",
+    "has_volume": false,
+    "rows": 2411,
+    "sources": [
+      "a1\\MANA.csv"
+    ],
+    "start": "2020-04-15"
+  },
+  "MET": {
+    "end": "2026-11-20",
+    "file": "MET.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\MET.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "MINA": {
+    "end": "2026-11-20",
+    "file": "MINA.csv",
+    "has_volume": false,
+    "rows": 1878,
+    "sources": [
+      "a1\\MINA.csv"
+    ],
+    "start": "2021-09-30"
+  },
+  "MNT": {
+    "end": "2026-11-20",
+    "file": "MNT.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\MNT.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "MON": {
+    "end": "2026-11-20",
+    "file": "MON.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\MON.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "MORPHO": {
+    "end": "2026-11-20",
+    "file": "MORPHO.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\MORPHO.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "MX": {
+    "end": "2026-11-20",
+    "file": "MX.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\MX.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "NEAR": {
+    "end": "2026-11-20",
+    "file": "NEAR.csv",
+    "has_volume": false,
+    "rows": 2228,
+    "sources": [
+      "a1\\NEAR.csv"
+    ],
+    "start": "2020-10-15"
+  },
+  "NEO": {
+    "end": "2026-11-20",
+    "file": "NEO.csv",
+    "has_volume": false,
+    "rows": 3395,
+    "sources": [
+      "a1\\NEO.csv"
+    ],
+    "start": "2017-08-05"
+  },
+  "NEXO": {
+    "end": "2026-11-20",
+    "file": "NEXO.csv",
+    "has_volume": false,
+    "rows": 3105,
+    "sources": [
+      "a1\\NEXO.csv"
+    ],
+    "start": "2018-05-22"
+  },
+  "NFT": {
+    "end": "2026-11-20",
+    "file": "NFT.csv",
+    "has_volume": false,
+    "rows": 1780,
+    "sources": [
+      "a1\\NFT.csv"
+    ],
+    "start": "2022-01-06"
+  },
+  "NIGHT": {
+    "end": "2026-11-20",
+    "file": "NIGHT.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\NIGHT.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "O": {
+    "end": "2026-11-20",
+    "file": "O.csv",
+    "has_volume": false,
+    "rows": 26,
+    "sources": [
+      "a1\\O.csv"
+    ],
+    "start": "2026-10-26"
+  },
+  "OKB": {
+    "end": "2026-11-20",
+    "file": "OKB.csv",
+    "has_volume": false,
+    "rows": 3110,
+    "sources": [
+      "a1\\OKB.csv"
+    ],
+    "start": "2018-05-11"
+  },
+  "ONDO": {
+    "end": "2026-11-20",
+    "file": "ONDO.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ONDO.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "OP": {
+    "end": "2026-11-20",
+    "file": "OP.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\OP.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ORCA": {
+    "end": "2026-11-20",
+    "file": "ORCA.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ORCA.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PAXG": {
+    "end": "2026-11-20",
+    "file": "PAXG.csv",
+    "has_volume": false,
+    "rows": 1717,
+    "sources": [
+      "a1\\PAXG.csv"
+    ],
+    "start": "2022-03-08"
+  },
+  "PENDLE": {
+    "end": "2026-11-20",
+    "file": "PENDLE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PENDLE.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PENGU": {
+    "end": "2026-11-20",
+    "file": "PENGU.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PENGU.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PEPE": {
+    "end": "2026-11-20",
+    "file": "PEPE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PEPE.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PI": {
+    "end": "2026-11-20",
+    "file": "PI.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PI.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PIEVERSE": {
+    "end": "2026-11-20",
+    "file": "PIEVERSE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PIEVERSE.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PLUME": {
+    "end": "2026-11-20",
+    "file": "PLUME.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PLUME.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "POL": {
+    "end": "2026-11-20",
+    "file": "POL.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\POL.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PONS": {
+    "end": "2026-11-20",
+    "file": "PONS.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PONS.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PROM": {
+    "end": "2026-11-20",
+    "file": "PROM.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PROM.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PUMP": {
+    "end": "2026-11-20",
+    "file": "PUMP.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PUMP.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PY": {
+    "end": "2026-11-20",
+    "file": "PY.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PYUSD.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "PYTH": {
+    "end": "2026-11-20",
+    "file": "PYTH.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\PYTH.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "QNT": {
+    "end": "2026-11-20",
+    "file": "QNT.csv",
+    "has_volume": false,
+    "rows": 2846,
+    "sources": [
+      "a1\\QNT.csv"
+    ],
+    "start": "2019-02-05"
+  },
+  "QTUM": {
+    "end": "2026-11-20",
+    "file": "QTUM.csv",
+    "has_volume": false,
+    "rows": 3283,
+    "sources": [
+      "a1\\QTUM.csv"
+    ],
+    "start": "2017-11-25"
+  },
+  "RAY": {
+    "end": "2026-11-20",
+    "file": "RAY.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\RAY.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "RED": {
+    "end": "2026-11-20",
+    "file": "RED.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\RED.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "RENDER": {
+    "end": "2026-11-20",
+    "file": "RENDER.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\RENDER.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "RL": {
+    "end": "2026-11-20",
+    "file": "RL.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\RLUSD.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "RSR": {
+    "end": "2026-11-20",
+    "file": "RSR.csv",
+    "has_volume": false,
+    "rows": 1642,
+    "sources": [
+      "a1\\RSR.csv"
+    ],
+    "start": "2022-05-24"
+  },
+  "RUNE": {
+    "end": "2026-11-20",
+    "file": "RUNE.csv",
+    "has_volume": false,
+    "rows": 2530,
+    "sources": [
+      "a1\\RUNE.csv"
+    ],
+    "start": "2019-12-18"
+  },
+  "S": {
+    "end": "2026-11-20",
+    "file": "S.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\S.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "SAND": {
+    "end": "2026-11-20",
+    "file": "SAND.csv",
+    "has_volume": false,
+    "rows": 2284,
+    "sources": [
+      "a1\\SAND.csv"
+    ],
+    "start": "2020-08-20"
+  },
+  "SEI": {
+    "end": "2026-11-20",
+    "file": "SEI.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\SEI.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "SENT": {
+    "end": "2026-11-20",
+    "file": "SENT.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\SENT.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "SFP": {
+    "end": "2026-11-20",
+    "file": "SFP.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\SFP.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "SHIB": {
+    "end": "2026-11-20",
+    "file": "SHIB.csv",
+    "has_volume": false,
+    "rows": 1978,
+    "sources": [
+      "a1\\SHIB.csv"
+    ],
+    "start": "2021-06-22"
+  },
+  "SKY": {
+    "end": "2026-11-20",
+    "file": "SKY.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\SKY.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "SOL": {
+    "end": "2026-11-20",
+    "file": "SOL.csv",
+    "has_volume": true,
+    "rows": 2416,
+    "sources": [
+      "a0\\coin_Solana.csv",
+      "a1\\SOL.csv"
+    ],
+    "start": "2020-04-10"
+  },
+  "SOON": {
+    "end": "2026-11-20",
+    "file": "SOON.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\SOON.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "SPX": {
+    "end": "2026-11-20",
+    "file": "SPX.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\SPX.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "STABLE": {
+    "end": "2026-11-20",
+    "file": "STABLE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\STABLE.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "STRK": {
+    "end": "2026-11-20",
+    "file": "STRK.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\STRK.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "STX": {
+    "end": "2026-11-20",
+    "file": "STX.csv",
+    "has_volume": false,
+    "rows": 3455,
+    "sources": [
+      "a1\\STX.csv"
+    ],
+    "start": "2015-05-13"
+  },
+  "SUI": {
+    "end": "2026-11-20",
+    "file": "SUI.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\SUI.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "SUN": {
+    "end": "2026-11-20",
+    "file": "SUN.csv",
+    "has_volume": false,
+    "rows": 1651,
+    "sources": [
+      "a1\\SUN.csv"
+    ],
+    "start": "2022-05-15"
+  },
+  "SUPER": {
+    "end": "2026-11-20",
+    "file": "SUPER.csv",
+    "has_volume": false,
+    "rows": 1643,
+    "sources": [
+      "a1\\SUPER.csv"
+    ],
+    "start": "2022-05-23"
+  },
+  "SYRUP": {
+    "end": "2026-11-20",
+    "file": "SYRUP.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\SYRUP.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "T": {
+    "end": "2026-11-20",
+    "file": "T.csv",
+    "has_volume": false,
+    "rows": 2907,
+    "sources": [
+      "a1\\TUSD.csv"
+    ],
+    "start": "2018-12-06"
+  },
+  "TAG": {
+    "end": "2026-11-20",
+    "file": "TAG.csv",
+    "has_volume": false,
+    "rows": 25,
+    "sources": [
+      "a1\\TAG.csv"
+    ],
+    "start": "2026-10-27"
+  },
+  "TAO": {
+    "end": "2026-11-20",
+    "file": "TAO.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\TAO.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "TEL": {
+    "end": "2026-11-20",
+    "file": "TEL.csv",
+    "has_volume": false,
+    "rows": 3223,
+    "sources": [
+      "a1\\TEL.csv"
+    ],
+    "start": "2018-01-24"
+  },
+  "THETA": {
+    "end": "2026-11-20",
+    "file": "THETA.csv",
+    "has_volume": false,
+    "rows": 3217,
+    "sources": [
+      "a1\\THETA.csv"
+    ],
+    "start": "2018-01-30"
+  },
+  "TIA": {
+    "end": "2026-11-20",
+    "file": "TIA.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\TIA.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "TRAC": {
+    "end": "2026-11-20",
+    "file": "TRAC.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\TRAC.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "TRUMP": {
+    "end": "2026-11-20",
+    "file": "TRUMP.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\TRUMP.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "TRX": {
+    "end": "2026-11-20",
+    "file": "TRX.csv",
+    "has_volume": true,
+    "rows": 3355,
+    "sources": [
+      "a0\\coin_Tron.csv",
+      "a1\\TRX.csv"
+    ],
+    "start": "2017-09-14"
+  },
+  "TWT": {
+    "end": "2026-11-20",
+    "file": "TWT.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\TWT.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "U": {
+    "end": "2026-11-20",
+    "file": "U.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\U.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "UNI": {
+    "end": "2026-11-20",
+    "file": "UNI.csv",
+    "has_volume": true,
+    "rows": 2256,
+    "sources": [
+      "a0\\coin_Uniswap.csv",
+      "a1\\UNI.csv"
+    ],
+    "start": "2020-09-17"
+  },
+  "USD1": {
+    "end": "2026-11-20",
+    "file": "USD1.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\USD1.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "USDC": {
+    "end": "2026-11-20",
+    "file": "USDC.csv",
+    "has_volume": true,
+    "rows": 2965,
+    "sources": [
+      "a0\\coin_USDCoin.csv",
+      "a1\\USDC.csv"
+    ],
+    "start": "2018-10-09"
+  },
+  "USDD": {
+    "end": "2026-11-20",
+    "file": "USDD.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\USDD.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "USDE": {
+    "end": "2026-11-20",
+    "file": "USDE.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\USDe.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "USDG": {
+    "end": "2026-11-20",
+    "file": "USDG.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\USDG.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "USDT": {
+    "end": "2026-11-20",
+    "file": "USDT.csv",
+    "has_volume": true,
+    "rows": 4281,
+    "sources": [
+      "a0\\coin_Tether.csv",
+      "a1\\USDT.csv"
+    ],
+    "start": "2015-02-26"
+  },
+  "USELESS": {
+    "end": "2026-11-20",
+    "file": "USELESS.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\USELESS.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "VET": {
+    "end": "2026-11-20",
+    "file": "VET.csv",
+    "has_volume": false,
+    "rows": 3031,
+    "sources": [
+      "a1\\VET.csv"
+    ],
+    "start": "2018-08-04"
+  },
+  "VIRTUAL": {
+    "end": "2026-11-20",
+    "file": "VIRTUAL.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\VIRTUAL.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "VSN": {
+    "end": "2026-11-20",
+    "file": "VSN.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\VSN.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "VVV": {
+    "end": "2026-11-20",
+    "file": "VVV.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\VVV.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "WAL": {
+    "end": "2026-11-20",
+    "file": "WAL.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\WAL.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "WBTC": {
+    "end": "2021-07-06",
+    "file": "WBTC.csv",
+    "has_volume": true,
+    "rows": 888,
+    "sources": [
+      "a0\\coin_WrappedBitcoin.csv"
+    ],
+    "start": "2019-01-31"
+  },
+  "WIF": {
+    "end": "2026-11-20",
+    "file": "WIF.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\WIF.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "WLD": {
+    "end": "2026-11-20",
+    "file": "WLD.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\WLD.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "WLFI": {
+    "end": "2026-11-20",
+    "file": "WLFI.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\WLFI.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "XAUT": {
+    "end": "2026-11-20",
+    "file": "XAUT.csv",
+    "has_volume": false,
+    "rows": 1650,
+    "sources": [
+      "a1\\XAUt.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "XCN": {
+    "end": "2026-11-20",
+    "file": "XCN.csv",
+    "has_volume": false,
+    "rows": 1652,
+    "sources": [
+      "a1\\XCN.csv"
+    ],
+    "start": "2022-05-14"
+  },
+  "XDC": {
+    "end": "2026-11-20",
+    "file": "XDC.csv",
+    "has_volume": false,
+    "rows": 2263,
+    "sources": [
+      "a1\\XDC.csv"
+    ],
+    "start": "2020-04-02"
+  },
+  "XEC": {
+    "end": "2026-11-20",
+    "file": "XEC.csv",
+    "has_volume": false,
+    "rows": 1878,
+    "sources": [
+      "a1\\XEC.csv"
+    ],
+    "start": "2021-09-30"
+  },
+  "XEM": {
+    "end": "2021-07-06",
+    "file": "XEM.csv",
+    "has_volume": true,
+    "rows": 2288,
+    "sources": [
+      "a0\\coin_NEM.csv"
+    ],
+    "start": "2015-04-02"
+  },
+  "XLM": {
+    "end": "2026-11-20",
+    "file": "XLM.csv",
+    "has_volume": true,
+    "rows": 4490,
+    "sources": [
+      "a0\\coin_Stellar.csv",
+      "a1\\XLM.csv"
+    ],
+    "start": "2014-08-06"
+  },
+  "XMR": {
+    "end": "2026-11-20",
+    "file": "XMR.csv",
+    "has_volume": true,
+    "rows": 4565,
+    "sources": [
+      "a0\\coin_Monero.csv",
+      "a1\\XMR.csv"
+    ],
+    "start": "2014-05-22"
+  },
+  "XPL": {
+    "end": "2026-11-20",
+    "file": "XPL.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\XPL.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "XRP": {
+    "end": "2026-11-20",
+    "file": "XRP.csv",
+    "has_volume": true,
+    "rows": 4856,
+    "sources": [
+      "a0\\coin_XRP.csv",
+      "a1\\XRP.csv",
+      "a2\\12 (2) (Data).csv"
+    ],
+    "start": "2013-08-05"
+  },
+  "XTZ": {
+    "end": "2026-11-20",
+    "file": "XTZ.csv",
+    "has_volume": false,
+    "rows": 3061,
+    "sources": [
+      "a1\\XTZ.csv"
+    ],
+    "start": "2018-07-05"
+  },
+  "ZAMA": {
+    "end": "2026-11-20",
+    "file": "ZAMA.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ZAMA.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ZEC": {
+    "end": "2026-11-20",
+    "file": "ZEC.csv",
+    "has_volume": false,
+    "rows": 3676,
+    "sources": [
+      "a1\\ZEC.csv"
+    ],
+    "start": "2016-10-28"
+  },
+  "ZEN": {
+    "end": "2026-11-20",
+    "file": "ZEN.csv",
+    "has_volume": false,
+    "rows": 3455,
+    "sources": [
+      "a1\\ZEN.csv"
+    ],
+    "start": "2017-06-06"
+  },
+  "ZK": {
+    "end": "2026-11-20",
+    "file": "ZK.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ZK.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ZRO": {
+    "end": "2026-11-20",
+    "file": "ZRO.csv",
+    "has_volume": false,
+    "rows": 28,
+    "sources": [
+      "a1\\ZRO.csv"
+    ],
+    "start": "2026-10-24"
+  },
+  "ZRX": {
+    "end": "2026-11-20",
+    "file": "ZRX.csv",
+    "has_volume": false,
+    "rows": 1675,
+    "sources": [
+      "a1\\ZRX.csv"
+    ],
+    "start": "2022-04-21"
+  }
+}

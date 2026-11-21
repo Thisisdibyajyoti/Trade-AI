@@ -103,7 +103,9 @@ class FeatureEngineer:
             data['day_of_week'] = ts.dt.dayofweek
             data['month'] = ts.dt.month
 
-        # Fill initial NaNs cleanly
-        data = data.ffill().bfill().fillna(0.0)
+        # Fill initial NaNs cleanly. Ratios built on zero volume (pct_change from
+        # a 0-volume bar) can yield +/-inf, which model fitters reject; fold those
+        # into NaN so they are filled like any other missing value.
+        data = data.replace([np.inf, -np.inf], np.nan).ffill().bfill().fillna(0.0)
 
         return data

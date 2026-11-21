@@ -8,6 +8,7 @@ interface ChartProps {
   candles: LiveCandle[];
   forming: LiveCandle | null;
   symbol: string;
+  timeframe: string;
   feedStatus: FeedStatus | null;
 }
 
@@ -19,12 +20,16 @@ const toBar = (c: LiveCandle): CandlestickData => ({
   close: c.close,
 });
 
-export const CandlestickChart: React.FC<ChartProps> = ({ candles, forming, symbol, feedStatus }) => {
+export const CandlestickChart: React.FC<ChartProps> = ({ candles, forming, symbol, timeframe, feedStatus }) => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
   const candlestickSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null);
   const lastCandlesRef = useRef<LiveCandle[] | null>(null);
-  const didFitRef = useRef(false);
+  // Which symbol|timeframe the series currently holds, and whether the next
+  // batch of candles still needs a fitContent() (never re-fit on live updates,
+  // so the user's zoom is preserved).
+  const seriesKeyRef = useRef<string>('');
+  const pendingFitRef = useRef(true);
 
   useEffect(() => {
     if (!chartContainerRef.current) return;
@@ -72,30 +77,36 @@ export const CandlestickChart: React.FC<ChartProps> = ({ candles, forming, symbo
     };
   }, []);
 
-  // Rebuild the closed series when the symbol changes.
-  useEffect(() => {
-    didFitRef.current = false;
-    lastCandlesRef.current = null;
-  }, [symbol]);
-
   // Apply closed candles (full set) + the live forming candle (incremental).
+  // The series is reset and re-fitted whenever the instrument OR the timeframe
+  // changes; live tick updates never re-fit so the user's zoom is kept.
   useEffect(() => {
     const series = candlestickSeriesRef.current;
-    if (!series || candles.length === 0) return;
+    if (!series) return;
+
+    const key = `${symbol}|${timeframe}`;
+    if (seriesKeyRef.current !== key) {
+      seriesKeyRef.current = key;
+      lastCandlesRef.current = null;
+      pendingFitRef.current = true;
+      series.setData([]); // drop the previous timeframe's candles immediately
+    }
+
+    if (candles.length === 0) return;
 
     if (lastCandlesRef.current !== candles) {
       series.setData(candles.map(toBar));
       lastCandlesRef.current = candles;
-      if (!didFitRef.current) {
+      if (pendingFitRef.current) {
         chartRef.current?.timeScale().fitContent();
-        didFitRef.current = true;
+        pendingFitRef.current = false;
       }
     }
 
     if (forming && forming.time > 0) {
       series.update(toBar(forming));
     }
-  }, [candles, forming]);
+  }, [candles, forming, symbol, timeframe]);
 
   return (
     <div

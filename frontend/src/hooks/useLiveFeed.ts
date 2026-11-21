@@ -210,7 +210,13 @@ export function useLiveFeed(symbol: string, timeframe: string): LiveFeedState {
   }, [symbol, connect]);
 
   // Switch timeframe on the existing socket (no reconnect, no gap).
+  // Clear the previous timeframe's candles/prediction immediately so the chart
+  // and cards never show stale data from the old timeframe while the new
+  // history backfills.
   useEffect(() => {
+    candlesRef.current = [];
+    formingRef.current = null;
+    setState((prev) => (prev.candles.length || prev.analysis ? { ...prev, candles: [], forming: null, analysis: null } : prev));
     const ws = wsRef.current;
     if (ws && ws.readyState === WebSocket.OPEN) {
       ws.send(JSON.stringify({ action: 'set_timeframe', timeframe }));

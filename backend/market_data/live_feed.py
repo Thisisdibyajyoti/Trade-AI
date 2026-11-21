@@ -17,6 +17,7 @@ from .providers.base import MarketDataProvider
 from .providers.binance import BinanceProvider
 from .providers.coingecko import CoinGeckoProvider
 from .providers.finnhub import FinnhubProvider
+from .providers.local_csv import LocalCsvProvider
 from .providers.yahoo import YahooProvider
 from .symbols import AssetInfo, is_market_open
 
@@ -42,7 +43,16 @@ _PROVIDERS: Dict[str, MarketDataProvider] = {
     "yfinance": YahooProvider(),
     "finnhub": FinnhubProvider(),
     "coingecko": CoinGeckoProvider(),
+    # Offline fallback: used for history only, never for streaming.
+    "local": LocalCsvProvider(),
 }
+
+# Providers whose bars are a stored snapshot rather than a live/streamed feed.
+OFFLINE_SOURCES = ("Offline dataset",)
+
+
+def is_offline_source(source: str) -> bool:
+    return bool(source) and source.startswith(OFFLINE_SOURCES)
 
 
 def provider_chain(asset: AssetInfo) -> List[MarketDataProvider]:
@@ -73,7 +83,25 @@ async def fetch_history(asset: AssetInfo, timeframe: str, days: Optional[int] = 
         if result.status == "SUCCESS" and result.dataframe is not None:
             return result
         last = result
-    return last
+    # Last resort: the bundled offline datasets (a static snapshot, not live).
+    offline = await _offline_history(asset, timeframe, days)
+    return offline or last
+
+
+async def _offline_history(asset: AssetInfo, timeframe: str, days: int):
+    """Try the offline dataset provider, or return None when unavailable."""
+    local = _PROVIDERS["local"]
+    available = getattr(local, "available", None)
+    if callable(available) and not available():
+        return None
+    result = await local.get_history(asset, timeframe, days)
+    if result.status == "SUCCESS" and result.dataframe is not None:
+        logger.info(
+            "Serving %s %s from offline dataset: %d candles",
+            asset.display, timeframe, len(result.dataframe),
+        )
+        return result
+    return None
 
 
 class LiveFeed:
@@ -85,8 +113,9 @@ class LiveFeed:
         self.subscribers: Set[asyncio.Queue] = set()
         self.active_timeframes: Set[str] = set()
 
-        self.mode: str = "CONNECTING"   # LIVE | DELAYED | CLOSED | STALE | RECONNECTING
+        self.mode: str = "CONNECTING"   # LIVE | DELAYED | CLOSED | STALE | OFFLINE | RECONNECTING
         self.source: str = ""
+        self.offline: bool = False      # history came from a stored offline dataset
         self.last_tick_ts: Optional[float] = None
         self.last_price: Optional[float] = None
         self.last_message: str = ""
@@ -177,6 +206,17 @@ class LiveFeed:
                         self.asset.display, timeframe, len(result.dataframe), provider.name,
                     )
                     return
+            # Offline dataset fallback (static snapshot; never streamed).
+            offline = await _offline_history(self.asset, timeframe, days)
+            if offline is not None:
+                self.builder.seed(timeframe, offline.dataframe)
+                self.source = "offline dataset"
+                self.offline = True
+                self.last_message = (
+                    f"No live feed available — showing the stored offline dataset "
+                    f"({len(offline.dataframe)} candles)."
+                )
+                return
             self.last_message = f"No historical data available for {self.asset.display} ({timeframe})."
 
     # -- supervisor / streaming ---------------------------------------------
@@ -311,8 +351,12 @@ class LiveFeed:
 
     def _status_message(self) -> dict:
         mode = self.mode
+        # Offline: history came from a stored dataset and no live tick has
+        # arrived, so nothing here is live — say so plainly.
+        if self.offline and self.last_tick_ts is None:
+            mode = "OFFLINE"
         # Staleness overrides an otherwise "live" feed.
-        if (
+        elif (
             mode in ("LIVE", "DELAYED")
             and is_market_open(self.asset)
             and self.last_tick_ts is not None

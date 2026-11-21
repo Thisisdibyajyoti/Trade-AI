@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 import pandas as pd
 import numpy as np
@@ -20,6 +21,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("offline_training_pipeline")
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+# Canonical CSVs produced by training/ingest_datasets.py from the shipped datasets.
+OFFLINE_DIR = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "backend", "data", "offline"
+)
 
 # Mapping from user-facing symbols to CSV filenames
 SYMBOL_TO_CSV = {
@@ -37,19 +42,44 @@ SYMBOL_TO_CSV = {
     "NIFTY 50": "IDX_NSEI_daily.csv",
 }
 
+_QUOTES = ("USDT", "USDC", "BUSD", "FDUSD", "TUSD", "USD", "INR", "EUR", "GBP", "BTC", "ETH")
+
+
+def _norm(text: str) -> str:
+    return re.sub(r"[^A-Z0-9]", "", (text or "").upper())
+
+
+def offline_csv_for(symbol: str) -> str | None:
+    """Resolve a symbol (BTC/USDT, BTCUSDT, BTC-USD, BTC) to an offline CSV."""
+    if not os.path.isdir(OFFLINE_DIR):
+        return None
+    normalized = _norm(symbol)
+    candidates = {normalized}
+    for quote in _QUOTES:
+        if normalized.endswith(quote) and len(normalized) > len(quote):
+            candidates.add(normalized[: -len(quote)])
+    for cand in sorted(candidates, key=len, reverse=True):
+        path = os.path.join(OFFLINE_DIR, f"{cand}.csv")
+        if os.path.exists(path):
+            return path
+    return None
+
 
 def load_from_csv(symbol: str) -> dict | None:
-    """Load historical data from local CSV file instead of hitting the API."""
+    """Load historical data from a local CSV file instead of hitting the API."""
     csv_name = SYMBOL_TO_CSV.get(symbol.upper())
-    if csv_name is None:
+    csv_path = os.path.join(DATA_DIR, csv_name) if csv_name else None
+    if csv_path is None or not os.path.exists(csv_path):
+        csv_path = offline_csv_for(symbol)
+    if csv_path is None or not os.path.exists(csv_path):
+        logger.warning(f"No local CSV found for {symbol}.")
+        logger.info(
+            "Run 'python training/ingest_datasets.py' to build the offline dataset, "
+            "or 'python training/generate_training_data.py' to fetch fresh CSVs."
+        )
         return None
 
-    csv_path = os.path.join(DATA_DIR, csv_name)
-    if not os.path.exists(csv_path):
-        logger.warning(f"CSV file not found: {csv_path}")
-        logger.info("Run 'python training/generate_training_data.py' first to generate training CSVs.")
-        return None
-
+    csv_name = os.path.basename(csv_path)
     df = pd.read_csv(csv_path)
     df['Timestamp'] = pd.to_datetime(df['Timestamp'])
 
@@ -61,9 +91,9 @@ def load_from_csv(symbol: str) -> dict | None:
     return {
         "status": "SUCCESS",
         "symbol": symbol,
-        "resolved_symbol": csv_name.replace("_daily.csv", ""),
+        "resolved_symbol": csv_name.replace(".csv", ""),
         "timeframe": "1d",
-        "data_source": f"Local CSV ({csv_name})",
+        "data_source": f"Offline dataset ({csv_name})",
         "data_period": f"{min_date.strftime('%Y-%m-%d')} to {max_date.strftime('%Y-%m-%d')}",
         "years_available": years,
         "candle_count": len(df),
@@ -158,12 +188,47 @@ def train_offline_pipeline(symbol: str = "BTC/USDT", timeframe: str = "1d", use_
     logger.info(f"Eliminated: {lasso_report.get('eliminated', [])}")
     logger.info(f"Sparsity Ratio: {lasso_report.get('sparsity_ratio', 0)}")
 
+def offline_symbols() -> list[str]:
+    """Every symbol available in the offline dataset directory."""
+    if not os.path.isdir(OFFLINE_DIR):
+        return []
+    return sorted(f[:-4] for f in os.listdir(OFFLINE_DIR) if f.endswith(".csv"))
+
+
+def train_all_offline(timeframe: str = "1d", limit: int | None = None) -> None:
+    """Train the models offline for every symbol in the shipped datasets."""
+    symbols = offline_symbols()
+    if not symbols:
+        logger.error(
+            "No offline dataset found at %s. Run 'python training/ingest_datasets.py' first.",
+            OFFLINE_DIR,
+        )
+        return
+    if limit:
+        symbols = symbols[:limit]
+    logger.info("--- Offline training for %d symbols from %s ---", len(symbols), OFFLINE_DIR)
+    ok = 0
+    for i, symbol in enumerate(symbols, 1):
+        logger.info("=== [%d/%d] %s ===", i, len(symbols), symbol)
+        try:
+            train_offline_pipeline(symbol, timeframe, use_csv=True)
+            ok += 1
+        except Exception as exc:  # keep going; one bad file must not stop the run
+            logger.error("Training failed for %s: %s", symbol, exc)
+    logger.info("--- Offline training complete: %d/%d symbols ---", ok, len(symbols))
+
+
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="TradeAI Offline Training Pipeline")
     parser.add_argument("--symbol", default="BTC/USDT", help="Asset symbol (e.g. BTC/USDT, AAPL, NVDA)")
     parser.add_argument("--timeframe", default="1d", help="Timeframe (default: 1d)")
     parser.add_argument("--live", action="store_true", help="Force live API fetch instead of local CSV")
+    parser.add_argument("--all", action="store_true", help="Train every symbol in the offline dataset")
+    parser.add_argument("--limit", type=int, default=None, help="Cap how many symbols --all trains")
     args = parser.parse_args()
 
-    train_offline_pipeline(args.symbol, args.timeframe, use_csv=not args.live)
+    if args.all:
+        train_all_offline(args.timeframe, limit=args.limit)
+    else:
+        train_offline_pipeline(args.symbol, args.timeframe, use_csv=not args.live)
