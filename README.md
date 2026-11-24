@@ -1,11 +1,5 @@
 # TradeAI — Data-Driven AI Trading Analysis Application
 
-**TradeAI** (TradeLens AI) is a real, quantitative, data-driven financial analysis and prediction system built with **FastAPI, PyTorch, XGBoost, Scikit-Learn, React, TypeScript, Vite, and TradingView Lightweight Charts**.
-
-> ⚠️ **CORE MANDATE**: **NEVER use random, hardcoded, fabricated, placeholder, or manually invented market predictions.** Every prediction, probability, price interval, and historical similarity score shown in TradeAI is computed dynamically from real historical and current market data using verified mathematical and machine learning models.
-
----
-
 ## 🌟 Key Features
 
 1. **Asset Identification & Verification**
