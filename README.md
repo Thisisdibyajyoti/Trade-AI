@@ -146,25 +146,3 @@ The backend needs long-running WebSockets plus PyTorch/XGBoost (well over Vercel
 > TradeAI never uses random, hardcoded or invented values. Every price, probability, interval and similarity score is computed from a real data feed and a trained model — and if the data is missing, stale or too short, the app says so instead of guessing.
 
 ---
-
-## 📋 Build Order Summary
-
-- [x] **PHASE 1**: Market-data acquisition
-- [x] **PHASE 2**: 10-year historical data pipeline
-- [x] **PHASE 3**: Data cleaning and quality audit
-- [x] **PHASE 4**: Leak-free feature engineering
-- [x] **PHASE 5**: Baseline statistical model (Model D)
-- [x] **PHASE 6**: XGBoost model (Model A)
-- [x] **PHASE 7**: PyTorch LSTM model (Model B)
-- [x] **PHASE 8**: Walk-forward out-of-sample validation
-- [x] **PHASE 9**: Dynamic ensemble model
-- [x] **PHASE 10**: Probability calibration
-- [x] **PHASE 11**: 50%, 80%, 95% prediction price intervals
-- [x] **PHASE 12**: Market regime & historical similarity engine
-- [x] **PHASE 13**: Live prediction API
-- [x] **PHASE 14**: OpenAI reasoning layer
-- [x] **PHASE 15**: TradingView Lightweight chart integration
-- [x] **PHASE 16**: Translucent desktop overlay
-- [x] **PHASE 17**: Paper trading evaluator feedback loop
-- [x] **PHASE 18**: Performance monitoring & transparency cards
-- [x] **PHASE 19**: Mobile application structure & setup
